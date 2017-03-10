@@ -1,0 +1,285 @@
+*{margin:0px;padding: 0px;}
+	.clear{clear: both;}
+	body{float: left;width: 100%;}
+	@font-face{
+	font-family:myfonty;
+	src: url('../font/DancingScript-Regular.ttf'), url('../font/DancingScript-Bold.eot'), url('../font/DancingScript-Bold.ttf'), url('../font/DancingScript-Regular.ttf'),url('../font/JustOldFashion.ttf');
+	}
+	@font-face{
+	font-family:myfontx;
+	src:url('../font/JustOldFashion.ttf');
+	}
+	@font-face{
+	font-family:myfontz;
+	src:url('../font/Androgyne_TB.ttf');
+	}
+	/*body{background-color: #cce1fe ; float: left;width: 100%; font-family: arial;}*/
+	body{background-image: url('../image/bg3.jpg'); float: left;width: 100%; font-family: arial;}
+	#head1{height:200px;width: 1200px;margin: auto;margin-top: 2px;overflow: hidden;}
+	.right{float: left;width: 830px;margin-left: 200px;}	
+	#left{width: 170px;margin-left: 108px;overflow: hidden;float: left;height: 100%;}
+	.slogan1{font-size: 90px;color:#FFBF00;margin-left: 135px;text-shadow: 0.1em 0.1em 0.3em ;font-family: myfontx;}
+	.slogan2{font-size: 35px;color: #B76211;margin-left: 74px;margin-top:-6px;/*text-shadow: 0.1em 0.1em 0.3em;*/ font-family: Arial;}
+	.slogan3{color:#A4AD42;margin-left: 598px;margin-top: -10px;}
+	#center{width: 1200px;margin: auto;}
+    
+html {
+	position: relative;
+	min-height: 100%;
+  min-width: 1200px;
+}
+
+html {
+  background: url('../img/nature-background1.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+header {
+  width: 1200px;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: #FFFFFF;
+  background: linear-gradient(#2060a0, #b0cae3);
+  padding: 5px;
+}
+
+footer {
+  width: 100%;
+  height: 55px;
+  position: absolute;
+  bottom: 0;
+  clear: both;
+  background-color: grey;
+  color: white;
+  text-align: center;
+  padding: 5px;
+}
+
+.alert {
+    font-weight: bold;
+    font-size: 20px;
+    font-family: Arial;
+}
+.panel>.table>tbody:first-child>tr:first-child td, .panel>.table>tbody:first-child>tr:first-child th{
+    font-family: Arial;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+    font-family: Arial;
+}
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover{
+    color:yellow;
+    background: #254273;
+}
+.navbar{
+    border: none;
+    background: #3363B3;
+    font-family: Arial;
+}
+.navbar .navbar-text {
+    font-size:16px;
+    color: #FFF;
+    font-family: Arial;
+}
+.navbar .navbar-text:hover {
+    font-size:16px;
+    color: #FFF;
+}
+.navbar .navbar-nav{
+    margin-bottom: -5px;
+}
+.navbar .navbar-nav>li>a{
+    font-size:16px;
+    color: #FFF;
+}
+
+form{
+    margin-top:50px;
+    font-size: 16px;
+}
+pre {
+  font-family: monospace;
+  white-space: pre-wrap;
+  margin: 0 0;
+  border: 0;
+  background-color: #ffffff;
+}
+.panel .panel-heading{
+    width: auto;
+}
+.panel .panel-body{
+    width: auto;
+    font-weight: normal;
+}
+.panel-primary>.panel-heading{
+        font-family: Arial;
+        width: auto;
+}
+.panel-primary>.panel-body{
+        font-family: Arial;
+        width: auto;
+}
+.navbar .navbar-text {
+      font-family: Arial;
+}
+a.navdisabled {
+   pointer-events: none;
+   cursor: default;
+}
+
+b.h1 {
+  font-size: 100%;
+  color: yellow;
+}
+
+b.h2 {
+  font-size: 120%;
+  color: red;
+}
+
+b.sm {
+  font-size: 120%;
+  color: red;
+}
+
+.headertext {
+  padding: 15px 0px;
+}
+
+.page-header {
+  border-bottom: 1px solid #ddd;
+}
+
+#mainpage:hover, .dropdown:hover{background-color: #ddd;}
+.dropdown:hover > .dropdown-menu{display:;}
+  
+#loginheader {
+  padding: 25px;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  color: #FFFFFF;
+  background: linear-gradient(#2060a0, #b0cae3);
+  border-radius: 25px;
+  box-shadow: 5px 5px 30px #888888;
+}
+
+.dropdown-menu .sub-menu {
+    left: 0%;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    margin-top: -1px;
+}
+
+.dropdown-menu li:hover .sub-menu {
+    visibility: visible;
+    background: blue;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block ;
+}
+
+table {
+    font-size: 18px;
+    color: black;
+} 
+
+tbody td {
+    font-size: 16px;
+}
+
+.panel-heading {
+    font-size: 18px;
+    text-align: center;
+
+}
+
+.scrollable {
+                height: 100%;
+                overflow: auto;
+            }
+
+.pageheader {
+    padding: 15px;
+    border-bottom: 1px solid #d3d7db;
+    border-top: 1px solid #eee;
+    background: #f7f7f7;
+    position: relative;
+}
+.pageheader .breadcrumb-wrapper {
+    position: absolute;
+    top: 23px;
+    right: 25px;
+}
+
+.pageheader .breadcrumb {
+    background: none;
+    display: inline-block;
+    padding: 0;
+}
+
+.pageheader .breadcrumb li.active {
+    color: #333;
+}
+.pageheader .breadcrumb li {
+    font-size: 12px;
+}
+
+.pageheader h2 span::before {
+    content: '/';
+    margin: 0 10px 0 5px;
+    color: #ccc;
+}
+
+.pageheader h2 span {
+    font-size: 13px;
+    text-transform: none;
+    color: #999;
+    font-style: italic;
+    vertical-align: middle;
+    letter-spacing: 0;
+    font-family: arial;
+}
+
+.pageheader .glyphicon, .pageheader .fa {
+    font-size: 24px;
+    margin-right: 5px;
+    padding: 6px 7px;
+    border: 2px solid #1D2939;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+}
+
+.fa {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.fa {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.pageheader .breadcrumb-wrapper .label {
+    color: #999;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: normal;
+    display: inline-block;
+}

@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+  <body>    
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+  	<?php
+             echo '<a class="navbar-brand" href="admin_trangchu.php"><img src="../image/home.png" style = "height:28px;width:30px;margin-top:-5px;margin-rigt:-5px"></a>';
+	     ?>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+	    <?php
+               echo '<p class="navbar-text"><i>Xin chào admin</i> <b>'.$_SESSION['fullname'].'</b></p>';
+	       ?>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-expanded="true">Tài khoản <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+		<?php
+                   echo '<li><a href="admin_doipass.php">Đổi mật khẩu</a></li>';
+		   ?>
+	    <?php
+               echo '<li><a href="admin_logout.php">Đăng xuất</a></li>';
+	       ?>
+           </ul>
+           </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="col-sm-3 col-md-2 sidebar">
+        <div id="accordion">
+          <ul class="nav nav-sidebar panel ">
+
+            <li <?php if ($page == 'them sinh vien' || $page == 'sua sinh vien') { ?> class="active" <?php } ?>><a data-toggle="collapse" data-parent="#accordion" href="#thongtinsv" aria-expanded="true" aria-controls="thongtinsv">Quản lý sinh viên <span class="caret"></span></a></li>
+            <div id="thongtinsv" class="collapse <?php if ($page == 'them sinh vien' || $page == 'sua sinh vien') { ?> in <?php } else { ?> out <?php } ?>">
+              <?php echo '<a href="admin_addstd.php"'; ?> class="list-group-item <?php if ($page == 'them sinh vien') { ?> list-group-item-success <?php } ?>">Thêm sinh viên</a>
+              <?php echo '<a href="admin_updatestd.php"'; ?> class="list-group-item <?php if ($page == 'sua sinh vien') { ?> list-group-item-success <?php } ?>">Cập nhật thông tin sinh viên</a>
+            </div>
+            <li <?php if ($page == 'diem lop hoc' || $page == 'diem sinh vien') { ?> class="active" <?php } ?>><a data-toggle="collapse" data-parent="#accordion" href="#diem" aria-expanded="true" aria-controls="diem">Cập nhật điểm <span class="caret"></span></a></li>
+            <div id="diem" class="collapse <?php if ($page == 'diem lop hoc' || $page == 'diem sinh vien') { ?> in <?php } else { ?> out <?php } ?>">
+              <?php echo '<a href="admin_classpoint.php"'; ?> class="list-group-item <?php if ($page == 'diem lop hoc') { ?> list-group-item-success <?php } ?>">Điểm lớp học</a>
+              <?php echo '<a href="admin_stdpoint.php"'; ?> class="list-group-item <?php if ($page == 'diem sinh vien') { ?> list-group-item-success <?php } ?>">Điểm sinh viên</a>
+            </div>
+            
+            <li <?php if ($page == 'viet thong bao' || $page == 'sua thong bao') { ?> class="active" <?php } ?>><a data-toggle="collapse" data-parent="#accordion" href="#thongbao" aria-expanded="true" aria-controls="thongbao">Quản lý thông báo<span class="caret"></span></a></li>
+            <div id="thongbao" class="collapse <?php if ($page == 'viet thong bao' || $page == 'sua thong bao' || $page == 'xoa thong bao') { ?> in <?php } else { ?> out <?php } ?>">
+              <?php echo '<a href="admin_post_write.php"'; ?> class="list-group-item <?php if ($page == 'viet thong bao') { ?> list-group-item-success <?php } ?>">Viết thông báo</a>
+              <?php echo '<a href="admin_post_fix.php"'; ?> class="list-group-item <?php if ($page == 'sua thong bao') { ?> list-group-item-success <?php } ?>">Sửa thông báo</a>
+              <?php echo '<a href="admin_post_del.php"'; ?> class="list-group-item <?php if ($page == 'xoa thong bao') { ?> list-group-item-success <?php } ?>">Xoá thông báo</a>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

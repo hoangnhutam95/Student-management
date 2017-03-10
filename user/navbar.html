@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li></li>
+            <li <?php if ($page == 'trang chu') { ?> <?php } ?>>
+	      <?php echo '<a href="user_trangchu.php"><img src="../image/home.png" style = "height:25px;width:26px;margin-top:-5px;margin-rigt:-5px">&nbsp;&nbsp;Trang chủ</a>'; ?>
+	    </li>
+            <li class="dropdown dropdown-toggle <?php if ($page == 'thong tin ca nhan' || $page == 'doi mat khau') { ?> active <?php } ?>"> <a href="#" class="dropdown-toggle navdisabled">Thông tin sinh viên<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+		<?php
+                   echo '<li><a href="user_info.php" class="">Thông tin cá nhân</a></li>';
+                   echo '<li><a href="user_doipass.php" class="">Ðổi mật khẩu</a></li>';
+		?>
+              </ul>
+            </li>
+            <li class="dropdown <?php if ($page == 'danh muc hoc phan' || $page == 'chuong trinh dao tao') { ?> active <?php } ?>"> <a href="#" class="dropdown-toggle navdisabled">Đào tạo<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+		<?php
+                echo '<li><a href="user_listsubject.php" class="">Danh mục học phần</a></li>';
+                echo '<li><a href="user_training.php" class="">Chương trình đào tạo</a></li>';
+		?>
+              </ul>
+            </li>
+            <li class="dropdown <?php if ($page == 'bang diem ca nhan' || $page == 'ket qua hoc tap') { ?> active <?php } ?>"> <a href="#" class="dropdown-toggle navdisabled">Kết quả học tập<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+		<?php
+                   echo '<li><a href="user_point.php" class="">Bảng điểm cá nhân</a></li>';
+                   echo '<li><a href="user_result.php" class="">Kết quả học tập</a></li>';
+		?>
+              </ul>
+            </li>
+            <li class="dropdown <?php if ($page == 'danh sach lop hoc'|| $page == 'dang ky lop hoc') { ?> active <?php } ?>"> <a href="#" class="dropdown-toggle navdisabled">Đăng ký học tập<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+		<?php
+                echo '<li><a href="user_listclass_sbj.php" class="">Danh sách lớp học</a></li>';
+                echo '<li><a href="user_register.php" class="">Ðăng ký lớp học</a></li>';
+                ?>
+              </ul>
+            </li>
+            <li class="dropdown <?php if ($page == 'danh sach lop sinh vien' || $page == 'sinh vien dang ky hoc tap') { ?> active <?php } ?>"> <a href="#" class="dropdown-toggle navdisabled">Tra cứu <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+		<?php
+                   echo '<li><a href="user_listclass_std.php" class="">Danh sách lớp sinh viên</a></li>';
+                   echo '<li><a href="user_signed.php" class="">Danh sách lớp đăng ký</a></li>';
+                   echo '<li><a href="user_timetable.php" class="">Thời khóa biểu</a></li>';
+		?>
+              </ul>
+            </li>
+            
+          </ul>
+          <p class="navbar-text"><i>Xin chào:</i>
+        <?php
+		echo ' <b class="">'.$_SESSION['fullname'].' </b><a href="user_logout.php" class="logout"><strong>[Logout]</strong></a></p>';
+	  ?>
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Thời khóa biểu</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/custom.css">
+    <link rel="stylesheet" href="../css/bootstrap-override.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.default.css">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  </head>
+  
+  <body>
+   <?php
+       $page = 'thoi khoa bieu';   
+       include '../user/navbar.html';
+       ?>
+    
+    <div class="container">
+      <div class="page-header">
+        <h1>Thời khóa biểu</h1>
+      </div>
+      <div class="panel panel-primary">
+        <div align="center" class="panel-heading">Thời khóa biểu</div>
+        <div class="panel-body">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Thứ</th>
+                <th>Thời gian</th>
+                <th>Tuần học</th>
+                <th>Phòng học</th>
+                <th>Mã học phần</th>
+                <th>Tên học phần</th>
+              </tr>
+            </thead>
+            <tbody>
+	      <?php
+		 while ($row_time_table = pg_fetch_array($result_get_timetable)){
+		 echo '<tr>';
+		 echo '<td>'.$row_time_table['day_of_week'].'</td>';
+		 echo '<td>'.$row_time_table['time'].'</td>';
+		 echo '<td>'.$row_time_table['week'].'</td>';
+		 echo '<td>'.$row_time_table['place'].'</td>';
+		 echo '<td>'.$row_time_table['id_subject'].'</td>';
+		 echo '<td>'.$row_time_table['name_subject'].'</td>';
+		 echo '<tr>';
+		 }
+		 ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+</html>

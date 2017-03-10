@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Danh sách lớp sinh viên</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/custom.css">
+    <link rel="stylesheet" href="../css/bootstrap-override.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.default.css">
+    <link rel="stylesheet" type="text/css" href="../css/csssv1.css"> 
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script>
+      function showClass( session, school ) {
+      if ( school == "default") {
+      document.getElementById("displayClass").innerHTML="<select name=\"class\" class=\"form-control\"><option value=\"default\" selected>Chọn lớp</option></select>";
+      return;
+      
+      }
+      
+      if ( session == "default") {
+      document.getElementById("displayClass").innerHTML="<select name=\"class\" class=\"form-control\"><option value=\"default\" selected>Chọn lớp</option></select>";
+      return;
+      
+      }
+      
+      if (window.XMLHttpRequest) {
+      // code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+      } else { // code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange=function() {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+      document.getElementById("displayClass").innerHTML=xmlhttp.responseText;
+      }
+      }
+      
+      xmlhttp.open("GET", "displayclass.php?session="+session+"&school="+school+"&as=class_select",true);
+      xmlhttp.send();
+}
+</script>
+ <style>
+body{
+    font-size: 40px;
+    font-family: myfonty;
+    color: yellow;
+    font-weight: bolder;
+}
+ </style>
+ <script language="javascript">
+cusor=' ';
+count=0;
+mess='Preparing Students For Success In A Changing World'
+ 
+function type()
+{
+if (cusor=='+') cusor=' '; else cusor='+';
+document.getElementById('scr').innerHTML=mess.substring(0,count++)+cusor;
+if(count<=mess.length) setTimeout("type()",80);
+}
+</script>
+<body onload="type()">
+<div id="head1">
+<img src="../image/logo.png"  style="float:left; width:210px; height:190px;"/>
+<div class="right">
+<p class="slogan1">OpenSIS</p>
+<div id="scr"></div>
+
+</div>
+</div>  
+  </head>
+  
+  <body>
+  <div id="center">
+    <?php
+       $page = 'danh sach lop sinh vien';
+       //include '../user/header.html';
+       include '../user/navbar.html';
+       ?>
+    
+    <div class="container pageheader" role="main">
+      <div class="col-lg-8">
+        <h2><i class="fa fa-dedent"></i>Danh sách lớp sinh viên<span>Xem danh sách sinh viên theo lớp sinh viên</span></h2>
+        </div>
+        <div class="col-lg-2">
+
+                </div>
+
+        <div class="breadcrumb-wrapper">
+            <span class="label">Bạn đang xem:</span>
+                <ol class="breadcrumb">
+                <!--<li><a href="index.html">Home</a></li>-->
+
+                <li class="active"><a href="user_trangchu.php">Trang chủ</a>&nbsp;/&nbsp;<a href="user_listclass_std.php">Danh sách lớp sinh viên</a></li>
+            </ol>
+        </div>
+        <div class="clearfix"></div>
+
+    </div>
+<div class="div">
+    <div class="foobar">
+        <div class="container">    
+      <form class="form-horizontal" role="form" method="post" action="">
+        <div class="form-group">
+          <label class="col-sm-3 control-label" style="text-align:left;">Khóa</label>
+          <div class="col-sm-4">
+            <select name="session_select" class="form-control">
+	      <?php
+		 if ($selected_session == "default"){
+		 echo '<option value="default" selected>Chọn khoá</option>';
+		 } else {
+		 echo '<option value="default" >Chọn khoá</option>';
+		 }
+		 while ( $row_list_session = pg_fetch_array($list_session) ){
+		 if ( $row_list_session['session'] == $selected_session){
+		 echo '<option value="'.$row_list_session['session'].'" selected >'.$row_list_session['session'].'</option>';
+		 } else {
+		 echo '<option value="'.$row_list_session['session'].'" >'.$row_list_session['session'].'</option>';
+		 }
+		 }
+		 ?>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" style="text-align:left;">Khoa/viện</label>
+          <div class="col-sm-4">
+            <select name="school_select" class="form-control" onchange="showClass( session_select.value , this.value)">
+	      <?php
+		 if ($selected_school == "default"){
+		 echo '<option value="default" selected>Chọn khoa viện</option>';
+		 } else {
+		 echo '<option value="default" >Chọn khoa viện</option>';
+		 }
+		 while ( $row_list_school = pg_fetch_array($list_school) ){
+		 if ( $row_list_school['school'] == $selected_school){
+		 echo '<option value="'.$row_list_school['school'].'" selected >'.$row_list_school['school'].'</option>';
+		 } else {
+		 echo '<option value="'.$row_list_school['school'].'">'.$row_list_school['school'].'</option>';
+		 }
+		 }
+		 ?>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" style="text-align:left;">Lớp</label>
+            <div id="displayClass" class="col-sm-4">
+              <select name="class_select" class="form-control">
+ 	      <?php
+		 if ($selected_class == "default"){
+		 echo '<option value="default" selected>Chọn lớp</option>';
+		 } else {
+		 echo '<option value="default" >Chọn lớp</option>';
+		 }
+		 while ( $row_list_class = pg_fetch_array($list_class) ){
+		 if ( $row_list_class['class'] == $selected_class){
+		 echo '<option value="'.$row_list_class['class'].'" selected >'.$row_list_class['class'].'</option>';
+		 } else {
+		 echo '<option value="'.$row_list_class['class'].'">'.$row_list_class['class'].'</option>';
+		 }
+		 }
+		 ?>
+              </select>
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="inputStudentId" class="col-sm-3 control-label" style="text-align:left;">hoặc mã số sinh viên</label>
+          <div class="col-sm-4">
+            <input name="username_find" type="text" class="form-control" id="inputStudentId" placeholder="Nhập mã số sinh viên">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputStudentName" class="col-sm-3 control-label" style="text-align:left;">hoặc tên sinh viên</label>
+          <div class="col-sm-4">
+            <input name="name_find" type="text" class="form-control" id="inputStudentName" placeholder="Nhập tên sinh viên">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-6 col-sm-offset-3">
+            <button name="search" type="submit" class="btn btn-primary">Tìm</button>
+          </div>
+        </div>
+      </form>
+      
+      <div class="panel panel-primary">
+        <div class="panel-heading" style="text-align:center;">
+        <b>Danh sách lớp sinh viên</b>
+	  <?php
+        if ( isset ($result_find_student))
+        {
+            if( 'default' != $selected_session ){
+                echo ' khoá '.$selected_session;
+            }
+            if ( 'default' != $selected_school){
+	            echo ' khoa/viện '.$selected_school;
+	        }
+	        if( $selected_class != 'default'){
+	            echo ' lớp '.$selected_class;
+	        }
+	        echo '</b>';
+        }
+        ?>
+        </div>
+        <div class="panel-body">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>MSSV</th>
+                <th>Họ và tên</th>
+                <th>Ngày sinh</th>
+                <th>Giới tính</th>
+                <th>Quê quán</th>
+                <th>Lớp</th>
+                <th>Khóa</th>
+                <th>Chương trình đào tạo</th>
+              </tr>
+            </thead>
+            <tbody>
+	      <?php
+		 if ( isset ($result_find_student)){
+		 while ( $row_find_student = pg_fetch_array( $result_find_student ) ) {
+		 echo '<tr>';
+		 echo '<td>'.$row_find_student['username'].'</td>';
+		 echo '<td>'.$row_find_student['fullname'].'</td>';
+		 echo '<td>'.$row_find_student['dob'].'</td>';
+		 echo '<td>'.$row_find_student['sex'].'</td>';
+		 echo '<td>'.$row_find_student['hometown'].'</td>';
+		 echo '<td>'.$row_find_student['class'].'</td>';
+		 echo '<td>'.$row_find_student['session'].'</td>';
+		 echo '<td>'.$row_find_student['training_system'].'</td>';
+		 echo '</tr>';
+		 }
+		 }
+		 ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+  </body>
+
+</html>

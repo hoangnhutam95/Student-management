@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Ðổi mật khẩu</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/custom2.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+    <script type="text/javascript" src="../js/tabulous.js"></script>
+    <script type="text/javascript" src="../js/dash_tab.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="jumbotron">
+          <h1>OpenSIS</h1>
+<h3>Preparing Students For Success In A Changing World</h3>
+    </div>
+    <?php $page = 'doi mat khau';
+	  include '../admin/admin_navbar.html';
+	  ?>
+
+    <div class="container-fluid">
+    
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <div class="container pageheader" role="main">      
+        <h2><i class="fa fa-weixin"></i>Đổi mật khẩu<span>/ Thay đổi mật khẩu tại đây</span></h2>
+      </div>
+      <br />        
+      <div class="col-md-8 col-md-offset-2">
+      	      <?php
+                 if ( isset($error_change) ){
+                 echo '<div class="alert alert-danger alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';     
+                 echo $error_change;                                                                    
+                 echo '</div>';
+                 unset($error_change);
+                 }
+                 if ( isset($sucess_change) ){
+                 echo '<div class="alert alert-success alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';
+                 echo $sucess_change;
+                 echo '</div>';
+                 unset($sucess_change);
+                 }
+                 ?>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <b>Thông tin tài khoản</b>
+          </div>
+          <div class="panel-body">
+            <form class="form-horizontal" role="form" method="post" action="">
+              <div class="form-group">
+                <label class="col-sm-4 control-label">Tài khoản</label>
+                <div class="col-sm-8">
+		  <?php
+                     echo '<p class="form-control-static">'.$_SESSION['fullname'].'</p>';
+		     ?>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword" class="col-sm-4 control-label">Mật khẩu cũ</label>
+                <div class="col-sm-8">
+                  <input name="old_password" type="password" class="form-control" id="inputPassword" placeholder="Nhập mật khẩu cũ" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword" class="col-sm-4 control-label">Mật khẩu mới</label>
+                <div class="col-sm-8">
+                  <input name="new_password" type="password" class="form-control" id="inputPassword" placeholder="Nhập mật khẩu mới từ 6 ký tự trở lên" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword" class="col-sm-4 control-label">Xác nhận mật khẩu mới</label>
+                <div class="col-sm-8">
+                  <input name="confirm_password" type="password" class="form-control" id="inputPassword" placeholder="Nhập lại mật khẩu mới" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8">
+                  <button name="change_password" type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    
+  </body>
+  
+</html>

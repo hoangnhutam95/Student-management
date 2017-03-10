@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Đăng ký lớp học</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/custom.css">
+    <link rel="stylesheet" href="../css/bootstrap-override.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.default.css">
+    <link rel="stylesheet" type="text/css" href="../css/csssv1.css"> 
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+
+ <style>
+body{
+    font-size: 40px;
+    font-family: myfonty;
+    color: yellow;
+    font-weight: bolder;
+}
+ </style>
+ <script language="javascript">
+cusor=' ';
+count=0;
+mess='Preparing Students For Success In A Changing World'
+ 
+function type()
+{
+if (cusor=='+') cusor=' '; else cusor='+';
+document.getElementById('scr').innerHTML=mess.substring(0,count++)+cusor;
+if(count<=mess.length) setTimeout("type()",80);
+}
+</script>
+<body onload="type()">
+<div id="head1">
+<img src="../image/logo.png"  style="float:left; width:210px; height:190px;"/>
+<div class="right">
+<p class="slogan1">OpenSIS</p>
+<div id="scr"></div>
+
+</div>
+</div>  
+  </head>
+  <body>
+  <div id="center">
+    <?php
+       $page = 'dang ky lop hoc';
+       //include '../user/header.html';
+       include '../user/navbar.html';
+       ?>
+    
+    <div class="container pageheader" role="main">
+      <div class="col-lg-8">
+        <h2><i class="fa fa-pencil-square-o"></i>Đăng ký lớp học<span>Đăng ký lớp học tại đây</span></h2>
+      </div>
+      <div class="col-lg-2"></div>
+      <div class="breadcrumb-wrapper">
+            <span class="label">Bạn đang xem:</span>
+                <ol class="breadcrumb">
+                    <li class="active"><a href="user_trangchu.php">Trang chủ</a>&nbsp;/&nbsp;<a href="user_register.php">Đăng ký lớp học</a></li>
+                </ol>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+<div class="div">
+    <div class="container">
+      <form class="form-horizontal" role="form" method="post" action="">
+        <div class="form-group">
+          <label class="col-sm-2 control-label" style="text-align:left;">Học kỳ</label>
+          <div class="col-sm-2">
+            <select name="semester_select" class="form-control">
+	      <?php
+		 while ( $row_list_semester = pg_fetch_array($list_semester)){
+		 if ( $selected_semester == $row_list_semester['semester']){
+		 echo '<option value="'.$row_list_semester['semester'].'" selected>'.$row_list_semester['semester'].'</option>';
+		 } else {
+		 echo '<option value="'.$row_list_semester['semester'].'" >'.$row_list_semester['semester'].'</option>';
+		 }
+		 }
+		 ?>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" style="text-align:left;">Khoa/viện</label>
+          <div class="col-sm-4">
+            <select name="school_select" class="form-control">
+	      <?php
+		 if ($selected_school == "default"){
+		 echo '<option value="default" selected>Chọn khoa viện</option>';
+		 } else {
+		 echo '<option value="default" >Chọn khoa viện</option>';
+		 }
+		 while ( $row_list_school = pg_fetch_array($list_school) ){
+		 if ( $row_list_school['school'] == $selected_school){
+		 echo '<option value="'.$row_list_school['school'].'" selected >'.$row_list_school['school'].'</option>';
+		 } else {
+		 echo '<option value="'.$row_list_school['school'].'">'.$row_list_school['school'].'</option>';
+		 }
+		 }
+		 ?>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputSubjectId" class="col-sm-2 control-label" style="text-align:left;">Mã học phần</label>
+          <div class="col-sm-4">
+	    <?php
+	       if ( isset($last_id_subject)){
+	       echo '<input name="id_subject" value="'.$last_id_subject.'" type="text" class="form-control" id="inputSubjectId" placeholder="Nhập mã học phần">';
+	       } else {
+	       echo '<input name="id_subject" type="text" class="form-control" id="inputSubjectId" placeholder="Nhập mã học phần">';
+	       }
+	       ?>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputClassId" class="col-sm-2 control-label" style="text-align:left;">Mã lớp</label>
+          <div class="col-sm-4">
+	    <?php
+	       if( isset($last_id_class)){
+	       echo '<input name="id_class" value="'.$last_id_class.'" type="text" class="form-control" id="inputClassId" placeholder="Nhập mã lớp">';
+	       } else {
+	       echo '<input name="id_class" type="text" class="form-control" id="inputClassId" placeholder="Nhập mã lớp">';
+	       }
+	       ?>
+          </div>
+          <div class="col-sm-6">
+            <button name="find_register_class" type="submit" class="btn btn-primary">Tìm</button>
+          </div>
+        </div>
+      </form>
+      
+      <div class="panel panel-primary">
+        <div class="panel-heading" style="text-align:center;">
+          <b>Danh sách các lớp mở đăng ký</b>
+        </div>
+        <div class="panel-body">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Lớp</th>
+                <th>Mã HP</th>
+                <th>Tên học phần</th>
+                <th>Ghi chú</th>
+                <th>Trạng Thái</th>
+                <th>Min</th>
+                <th>Max</th>
+                
+                <th>Thứ</th>
+                <th>Thời gian</th>
+                <th>Tuần</th>
+                <th>Phòng</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+	      if ( isset ( $list_class ) ){
+	      
+	      while ( $row_list_class = pg_fetch_array ( $list_class)){
+	      $time_table_class = $class_obj->get_time_class_by_id( $row_list_class['id_class'] );
+	      $rowsp = pg_num_rows( $time_table_class);
+	      echo '<tr>';
+		  echo '<td rowspan="'.$rowsp.'" style="vertical-align:middle;" >'.$row_list_class['id_class'].'</td>';
+		  echo '<td rowspan="'.$rowsp.'" style="vertical-align:middle;" >'.$row_list_class['id_subject'].'</td>';
+		  echo '<td rowspan="'.$rowsp.'" style="vertical-align:middle;" >'.$row_list_class['subject'].'</td>';
+		  echo '<td rowspan="'.$rowsp.'" style="vertical-align:middle;" >'.$row_list_class['note'].'</td>';
+		  echo '<td rowspan="'.$rowsp.'" style="vertical-align:middle;" >'.$row_list_class['state'].'</td>';
+		  echo '<td rowspan="'.$rowsp.'" style="vertical-align:middle;" >'.$row_list_class['min_sign'].'</td>';
+		  echo '<td rowspan="'.$rowsp.'" style="vertical-align:middle;" >'.$row_list_class['max_sign'].'</td>';
+		  //echo '<td rowspan="'.$rowsp.'" style="vertical-align:middle;" >'.$row_list_class['signed'].'</td>';
+		  $row_time_table_class = pg_fetch_array( $time_table_class);
+		  echo '<td>'.$row_time_table_class['day_of_week'].'</td>';
+		  echo '<td>'.$row_time_table_class['clock'].'</td>';
+		  echo '<td>'.$row_time_table_class['week'].'</td>';
+		  echo '<td>'.$row_time_table_class['place'].'</td>';
+		  echo '<td rowspan="'.$rowsp.'" style="vertical-align:middle;"> <form method="post" action="" ><button name="register_class" value="'.$row_list_class['id_class'].'" type="submit" class="btn btn-primary btn-xs">Đăng ký</button></form></td>';
+		  echo '</tr>';
+	      if( $rowsp > 1 ){
+	      while ( $row_time_table_class = pg_fetch_array( $time_table_class) ){
+            echo '<tr>';
+            echo '<td>'.$row_time_table_class['day_of_week'].'</td>';
+            echo '<td>'.$row_time_table_class['clock'].'</td>';
+            echo '<td>'.$row_time_table_class['week'].'</td>';
+            echo '<td>'.$row_time_table_class['place'].'</td>';
+            echo '</tr>';
+	      }
+	      }
+          
+          pg_free_result( $time_table_class);
+	      }
+	      
+	      }
+            
+	      ?>
+	      
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div class="panel panel-primary">
+        <div class="panel-heading" style="text-align:center;">
+	  <?php
+	     if( isset($selected_semester)){
+	     echo '<b>Danh sách đăng ký lớp của sinh viên '.$_SESSION['fullname'].' học kỳ '.$selected_semester.' </b>';
+	     } else{
+	     echo '<b>Danh sách đăng ký lớp của sinh viên '.$_SESSION['fullname'].' </b>';
+	     }
+	     ?>
+        </div>
+        <div class="panel-body">
+	  <form method="post" action="">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Lớp</th>
+                <th>Mã HP</th>
+                <th>Tên học phần</th>
+                <th>Trạng thái lớp</th>
+                <th>Trạng thái đăng ký</th>
+                <th>Số tín chỉ</th>
+                <th>Chọn</th>
+              </tr>
+            </thead>
+            <tbody>
+	      <?php
+		 if ( isset ( $result_register_class_obj)){
+		 while( $row_list_register_class = pg_fetch_array($result_register_class_obj)){
+		 echo '<tr>';
+		 echo '<td>'.$row_list_register_class['id_class'].'</td>';
+		 echo '<td>'.$row_list_register_class['id_subject'].'</td>';
+		 echo '<td>'.$row_list_register_class['subject'].'</td>';
+		 echo '<td>'.$row_list_register_class['state'].'</td>';
+		 echo '<td>'.$row_list_register_class['register_state'].'</td>';
+		 echo '<td>'.$row_list_register_class['credits_subject'].'</td>';
+		 echo '<td>';
+		 echo '<input type="checkbox" name="unregister[]" id="blankCheckbox" value="'.$row_list_register_class['id_class'].'">';
+		 echo '</td>';
+		 echo '</tr>';
+		 }
+		 }
+		 ?>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel-footer clearfix" style="border-bottom-style:solid; border-bottom-width:1px; border-bottom-color:#ddd;">
+          <div class="col-sm-offset-9 col-sm-3" style="text-align:center;">
+
+            <button name="unregister_class" type="submit" class="btn btn-primary btn-xs btn-block">Xóa các lớp đã chọn</button>
+          </div>
+        </div>
+	</form>
+        <div class="panel-body">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Thứ</th>
+                <th>Thời gian</th>
+                <th>Tuần học</th>
+                <th>Phòng học</th>
+                <th>Mã học phần</th>
+                <th>Mã lớp học</th>
+              </tr>
+            </thead>
+            <tbody>
+	      <?php
+		 while( $row_time_table_class_register = pg_fetch_array( $result_time_table_class_register) ){
+		 echo '<tr>';
+		 echo '<td>'.$row_time_table_class_register['day_of_week'].'</td>';
+		 echo '<td>'.$row_time_table_class_register['clock'].'</td>';
+		 echo '<td>'.$row_time_table_class_register['week'].'</td>';
+		 echo '<td>'.$row_time_table_class_register['place'].'</td>';
+		 echo '<td>'.$row_time_table_class_register['id_subject'].'</td>';
+		 echo '<td>'.$row_time_table_class_register['id_class'].'</td>';
+		 }
+		 ?>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel-footer clearfix">
+          <div class="col-sm-offset-4 col-sm-4" style="text-align:center;">
+	    <form method="post" action="">
+              <button name="submit_register" type="submit" class="btn btn-primary btn-block">Gửi đăng ký</button>
+	    </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+  </body>
+
+</html>

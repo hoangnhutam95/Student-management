@@ -1,0 +1,145 @@
+*{margin:0px;padding: 0px;}
+	.clear{clear: both;}
+	body{float: left;width: 100%;}
+	@font-face{
+	font-family:myfonty;
+	src: url('../font/DancingScript-Regular.ttf'), url('../font/DancingScript-Bold.eot'), url('../font/DancingScript-Bold.ttf'), url('../font/DancingScript-Regular.ttf'),url('../font/JustOldFashion.ttf');
+	}
+	@font-face{
+	font-family:myfontx;
+	src:url('../font/JustOldFashion.ttf');
+	}
+	@font-face{
+	font-family:myfontz;
+	src:url('../font/Androgyne_TB.ttf');
+	}
+	/*body{background-color: #cce1fe ; float: left;width: 100%; font-family: arial;}*/
+	body{background-image: url('../image/bg3.jpg'); float: left;width: 100%; font-family: arial;}
+	#head{height:200px;width: 1250px;margin: auto;margin-top: 2px;overflow: hidden;}
+	.right{float: left;width: 830px;margin-left: 93px;}	
+	#left{width: 170px;margin-left: 108px;overflow: hidden;float: left;height: 100%;}
+	.slogan1{font-size: 90px;color:#FFBF00;margin-left: 135px;text-shadow: 0.1em 0.1em 0.3em ;font-family: myfontx;}
+	.slogan2{font-size: 35px;color: yellow;margin-left: 280px;margin-top:-100px;margin-bottom:80px;/*text-shadow: 0.1em 0.1em 0.3em;*/ font-family: myfonty;}
+	.slogan3{color:#A4AD42;margin-left: 598px;margin-top: -10px;}
+	#center{width: 1200px;margin: auto;}
+    
+.alert {
+    font-weight: bold;
+    font-size: 20px;
+    font-family: Arial;
+}
+
+.dropdown-menu .sub-menu {
+    left: 0%;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    margin-top: -1px;
+}
+
+.dropdown-menu li:hover .sub-menu {
+    visibility: visible;
+    background: blue;
+
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block ;
+        color: red;
+}
+
+.dropdown-menu>li>a{
+    color: blue;
+}
+#mainpage:hover, .dropdown:hover{background-color: #254273; color: yellow;}
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover{
+    color:yellow;
+    background: #254273;
+}
+.navbar{
+    border: none;
+    background: #3363B3;
+    font-family: Arial;
+}
+.navbar .navbar-text {
+    font-size:16px;
+    color: #FFF;
+    font-family: Arial;
+}
+.navbar .navbar-text:hover {
+    font-size:16px;
+    color: #FFF;
+}
+.navbar .navbar-nav{
+    margin-bottom: -5px;
+}
+.navbar .navbar-nav>li>a{
+    font-size:16px;
+    color: #FFF;
+}
+.navbar-default{
+    font-weight: normal;
+}
+.list-group{
+    width: 810px;
+    text-align: left;
+    font-family: Arial
+}
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: rgba(228, 228, 228, 0.19);
+    border: 1px solid #ddd;
+    font-size: 14px;
+    font-family: Arial;
+    font-weight: normal;
+}
+a.logout {color:rgba(255, 255, 255, 0.58);text-decoration:none; }
+a.logout:hover {color:yellow;text-decoration:none;}
+
+a.login {color:#0000ff;text-decoration:none;margin-left: 800px;}
+a.login:hover {color:#ff0000;text-decoration:none;}
+
+.panel-primary>.panel-heading{
+    font-family: Arial;
+    font-size: 18px;
+}
+.panel-success{
+    width: 800px;
+    margin-left: 160px;
+    margin-top:20px;
+}
+.panel-success>.panel-heading{
+    font-size: 22px;
+    font-family: Arial;
+}
+.panel-success>.panel-body{
+    font-size: 22px;
+    font-family: Arial;
+    color:#111;
+    background: rgba(23, 26, 41, 0.94);
+}
+
+
+.panel-warning>.panel-heading{
+    font-size: 20px;
+    text-align: center;
+    color: rgba(193, 23, 23, 0.9);
+    font-family: monospace;
+}
+	#marginleft{margin-left: 35px;margin-top: -20px;}
+	#welcome a{text-decoration: none;}
+	ul#menudown .new a{background:#3363B3;text-align: center;text-transform: uppercase;color: #fff;font-family: myfontz;}
+	ul#menudown{float: left;background: rgb(234, 241, 191);width: 150px;}
+	ul#menudown li{float: left;background: rgb(234, 241, 191);list-style: none;position: relative;}
+	ul#menudown li:last-child{border-right: none;}
+	ul#menudown li a{float: left;width:250px ;padding: 4px 20px;line-height: 18px; text-decoration: none;color: #6D2C2B;font-size: 16px;}
+	ul#menudown li:hover{background-color:rgb(214, 222, 165);}
+	ul#menudown li:hover ul{display: block;}
+
+	#thongbao{background-color: rgba(255, 255, 255, 0); text-align: center;width: 850px; height: auto;padding-top: 26px;margin-left: 400px;}
+	table{width: 770px;margin-left: -12px; border: ;color: #752525;margin: auto; cellspacing:10px;}
+
+

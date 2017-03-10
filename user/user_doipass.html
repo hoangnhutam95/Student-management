@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Đổi mật khẩu</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/custom.css">
+    <link rel="stylesheet" href="../css/bootstrap-override.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.default.css">
+    <link rel="stylesheet" type="text/css" href="../css/csssv1.css"> 
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+
+ <style>
+body{
+    font-size: 40px;
+    font-family: myfonty;
+    color: yellow;
+    font-weight: bolder;
+}
+ </style>
+ <script language="javascript">
+cusor=' ';
+count=0;
+mess='Preparing Students For Success In A Changing World'
+ 
+function type()
+{
+if (cusor=='+') cusor=' '; else cusor='+';
+document.getElementById('scr').innerHTML=mess.substring(0,count++)+cusor;
+if(count<=mess.length) setTimeout("type()",80);
+}
+</script>
+</head>
+
+<body onload="type()">
+
+<div id="head1">
+    <img src="../image/logo.png"  style="float:left; width:210px; height:190px;"/>
+    <div class="right">
+        <p class="slogan1">OpenSIS</p>
+        <div id="scr"></div>
+    </div>
+</div>  
+
+<div id="center">
+    <?php
+       $page = 'doi mat khau';
+       include '../user/navbar.html';
+    ?>
+    
+    <div class="container pageheader" role="main">
+          <div class="col-lg-8">
+            <h2><i class="fa fa-dedent"></i>Ðổi mật khẩu</h2>
+          </div>
+          <div class="col-lg-2"></div>
+          <div class="breadcrumb-wrapper">
+                <span class="label">Bạn đang:</span>
+                <ol class="breadcrumb">
+                    <!--<li><a href="index.html">Home</a></li>-->
+                    <li class="active"><a href="user_doipass.php">Ðổi mật khẩu</a></li>
+                </ol>
+          </div>
+          <div class="clearfix"></div>
+    </div>
+    
+    <div class="container">
+        <div class="panel panel-success">
+        <?php
+        if ( isset($error_changepassword) ){
+            echo '<div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';     
+            echo $error_changepassword;                                                                    
+            echo '</div>';
+            unset($error_changepassword);
+        }
+        if ( isset($sucess_changepassword) ){
+            echo '<div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';
+            echo $sucess_changepassword;
+            echo '</div>';
+            unset($sucess_changepassword);
+            }
+        ?>
+            <div class="panel-heading"><b>Thông tin tài khoản</b></div>
+            <div class="panel-body">
+                <form class="form-horizontal" role="form" method="POST" action="">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Họ và tên</label>
+                        <div class="col-sm-8">
+                        <?php
+                             echo '<p class="form-control-static">'.$_SESSION['fullname'].'</p>';
+                        ?>
+                        </div>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-sm-4 control-label">Mật khẩu cũ</label>
+                        <div class="col-sm-8">
+                            <input name="oldpassword" type="password" class="form-control" id="inputPassword" placeholder="Nhập mật khẩu cũ"/> 
+                        </div>
+                    </div>
+                  
+                    <div class="form-group"> 
+                        <label for="inputPassword" class="col-sm-4 control-label">Mật khẩu mới</label>
+                        <div class="col-sm-8">
+                            <input name="newpassword" type="password" class="form-control" id="inputPassword" placeholder="Nhập mật khẩu mới từ 6 ký tự trở lên">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-sm-4 control-label">Xác nhận mật khẩu mới</label>
+                        <div class="col-sm-8">
+                            <input name="confirmnewpassword" type="password" class="form-control" id="inputPassword" placeholder="Nhập lại mật khẩu mới">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-sm-8 col-sm-offset-4">
+                            <button name="changepassword" type="submit" class="btn btn-primary">Submit</button> 
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

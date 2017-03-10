@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Cập nhật điểm sinh viên</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/custom2.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+    <script type="text/javascript" src="../js/tabulous.js"></script>
+    <script type="text/javascript" src="../js/dash_tab.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+<div class="container-fluid">
+    <div class="jumbotron"><h1>OpenSIS</h1>
+<h3>Preparing Students For Success In A Changing World</h3>
+    </div>
+    <?php $page = 'dong mo lop hoc';
+	  include "../admin/admin_navbar.html";
+	  ?>
+    <div class="container-fluid">
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <div class="container pageheader" role="main">      
+        <h2><i class="fa fa-user"></i>Cập nhật điểm sinh viên<span>/ Cập nhật điểm cho từng sinh viên tại đây</span></h2>
+      </div>
+        <form class="form-horizontal" role="form" method="post" action="" >
+        <br />
+        			
+		<?php
+		 if ( isset($sucess_update_point) ){
+		 echo '<div class="alert alert-success alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';     
+		 echo $sucess_update_point;                                                                    
+		 echo '!</div>';
+		 unset( $sucess_update_point);
+		 }
+		 if ( isset($error_update_point) ){
+		 echo '<div class="alert alert-danger alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';     
+		 echo $error_update_point;                                                                    
+		 echo '!</div>';
+		 unset( $error_update_point);
+		 }
+		 ?>
+          <div class="form-group">
+            <label for="StudentId" class="col-sm-2 control-label">Mã số sinh viên</label>
+            <div class="col-sm-4">
+              <input name="username" type="number" class="form-control" id="StudentId" min="0" placeholder="Nhập mã số sinh viên">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="ClassId" class="col-sm-2 control-label">Mã lớp</label>
+            <div class="col-sm-4">
+              <input name="id_class" type="number" class="form-control" id="ClassId" min="0" placeholder="Nhập mã lớp">
+            </div>
+          </div>
+          <div class="form-group">
+		  	      <?php
+					if ( isset($error_find) ){
+					echo '<div class="alert alert-warning alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';     
+					echo $error_find;                                                                    
+					echo '</div>';
+					unset( $error_find);
+					}
+		 ?>
+            <div class="col-sm-5 col-sm-offset-2">
+              <button name="find" type="submit" class="btn btn-primary">Tìm</button>
+            </div>
+          </div>
+        </form>
+        
+        <div class="panel panel-primary">
+          <div class="panel-heading" style="text-align:center;">
+	    <?php
+	       if ( isset ( $student)){
+                echo '<b>Cập nhật điểm của sinh viên '.$student['fullname'].' mã số '.$student['username'].' lớp '.$class['id_class'].'</b>';
+	       } else {
+	       echo '<b>Cập nhật điểm của sinh viên</b>';
+	       }
+	       ?>
+          </div>
+	  <form method="post" action="" >
+          <div class="panel-body">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Học kỳ</th>
+                  <th>Mã học phần</th>
+                  <th>Tên học phần</th>
+                  <th>Lớp học</th>
+                  <th>Điểm quá trình</th>
+                  <th>Điểm thi</th>
+                </tr>
+              </thead>
+              <tbody>
+		<?php
+		   if( isset( $student) ){
+		   echo '<tr>';
+		   echo '<td>'.$class['semester'].'</td>';
+		   echo '<td>'.$class['id_subject'].'</td>';
+		   echo '<td>'.$class['subject'].'</td>';
+		   echo '<td>'.$class['id_class'].'</td>';
+		   $point_by_username_id_class = $class_obj->get_point_by_username_id_class( $student['username'], $class['id_class']);
+			$point = pg_fetch_array( $point_by_username_id_class);
+		   echo '<td><input name="midle'.'" type="number" min="0" max="10" step="0.5" class="form-control" id="Point" value="'.$point['midle_point'].'"></td>';
+		   echo '<td><input name="end'.'" type="number" min="0" max="10" step="0.5" class="form-control" id="Point" value="'.$point['end_point'].'"></td>';
+		   echo '</tr';
+		   }
+		   ?>
+              </tbody>
+            </table>
+
+			
+			
+          </div>
+          <div class="panel-footer clearfix">
+            <div class="col-sm-offset-4 col-sm-4" style="text-align:center;">
+			<?php
+			if( isset($student)){
+			echo '<button name="update_point" value="'.$student['username'].$class['id_class'].'" type="submit" class="btn btn-primary btn-block">Cập nhật điểm</button>';
+			} else {
+			echo '<button name="update_point" value="" type="submit" class="btn btn-primary btn-block">Cập nhật điểm</button>';
+			}
+			?>
+            </div>
+          </div>
+	  </form>
+        </div>
+        
+      </div>
+    </div>
+    
+  </body>
+  
+</html>

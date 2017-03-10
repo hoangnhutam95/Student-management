@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sis-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li></li>
+            <li <?php if ($page == 'trang chu') { ?> <?php } ?>>
+	           <?php echo '<a href="guest.php"><img src="../image/home.png" style = "height:25px;width:26px;margin-top:-5px;margin-rigt:-5px">&nbsp;&nbsp;Trang chủ</a>'; ?>
+	       </li>
+        </ul>
+          <p class="navbar-text">
+        <?php
+		echo '<a href="user_login.php" class="login"><img src="../image/tk.png" style = "height:25px;width:26px;margin-top:0px;margin-rigt:-5px">&nbsp;<strong>Login<strong></a></p>';
+	  ?>
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>

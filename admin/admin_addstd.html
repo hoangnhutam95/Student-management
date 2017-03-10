@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Thêm sinh viên</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/custom2.css">
+    <script type="text/javascript" src="../js/tabulous.js"></script>
+    <script type="text/javascript" src="../js/dash_tab.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  
+</head>
+
+  <body>
+  <div class="container-fluid">
+    <div class="jumbotron"><h1>OpenSIS</h1>
+<h3>Preparing Students For Success In A Changing World</h3>
+
+    </div>
+    <?php $page = 'them sinh vien';
+	  include '../admin/admin_navbar.html';
+	  ?>
+
+    <div class="container-fluid">
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+      <div class="container pageheader" role="main">      
+        <h2><i class="fa fa-user-plus"></i>Thêm thông tin sinh viên<span>/ Cập nhật thông tin sinh viên tại đây</span></h2>
+      </div>
+      <br />
+                  <?php
+                if ( isset($error_add) ){
+                    echo '<div class="alert alert-danger alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';     
+                    echo $error_add;                                                                    
+                    echo '</div>';
+                    unset($error_add);
+                }
+                if ( isset($success_add) ){
+                    echo '<div class="alert alert-success alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';
+                    echo $success_add;
+                    echo '</div>';
+                    unset($success_add);
+                }
+            ?>
+        <form class="form-horizontal" role="form" method="post" action="">
+          <div class="form-group">
+            <label for="StudentId" class="col-sm-2 control-label">Mã số sinh viên</label>
+            <div class="col-sm-8">
+              <input name="username" type="number" class="form-control" id="StudentId" placeholder="Nhập mã số sinh viên" required autofocus>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="StudentName" class="col-sm-2 control-label">Họ tên sinh viên</label>
+            <div class="col-sm-8">
+              <input name="fullname" type="text" class="form-control" id="StudentName" placeholder="Nhập họ tên sinh viên" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="Sex" class="col-sm-2 control-label">Giới tính</label>
+            <div class="col-sm-8">
+              <select name="sex" id="Sex" class="form-control">
+                <option value="Nam" >Nam</option>
+                <option value="Nữ" >Nữ</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="Dob" class="col-sm-2 control-label">Ngày sinh</label>
+            <div class="col-sm-8">
+              <input name="dob" type="date" class="form-control" id="Dob" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="Hometown" class="col-sm-2 control-label">Quê quán</label>
+            <div class="col-sm-8">
+              <input name="hometown" type="text" class="form-control" id="Hometown" placeholder="Nhập quê quán" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="Class" class="col-sm-2 control-label">Lớp</label>
+            <div id="displayClass" class="col-sm-8">
+                 <select name="class" class="form-control">
+        <?php
+        if ($selected_class == "default"){
+            echo '<option value="default" selected>Chọn mã lớp</option>';
+        } 
+        else{
+            echo '<option value="default" >Chọn mã lớp</option>';
+        }
+        while ( $row_list_class = pg_fetch_array($list_class) ){
+            if ( $row_list_class['class'] == $selected_class){
+                echo '<option value="'.$row_list_class['class'].'" selected >'.$row_list_class['class'].'</option>';
+                }
+            else{
+                echo '<option value="'.$row_list_class['class'].'">'.$row_list_class['class'].'</option>';
+            }
+        }
+        ?>	
+         </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="Password" class="col-sm-2 control-label">Mật khẩu</label>
+            <div class="col-sm-8">
+              <input name="password" type="password" class="form-control" id="Password" placeholder="Đặt mật khẩu" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="CourseType" class="col-sm-2 control-label">Hệ học</label>
+            <div class="col-sm-8">
+              <select name="course_type" id="schoolType" class="form-control">
+                <option value="Ðại Học" selected>Ðại Học</option>
+                <option value="Cao Ðẳng" >Cao Ðẳng</option>
+                <option value="Tại Chức" >Tại Chức</option>
+                <option value="Cao Học" >Cao Học</option>
+              </select>
+            </div>
+          </div>
+
+        <div class="form-group">
+            <label for="Session" class="col-sm-2 control-label">Khóa</label>
+            <div class="col-sm-8">
+              <select name="session" class="form-control">
+        <?php
+        if ($selected_session == "default"){
+            echo '<option value="default" selected>Chọn khóa</option>';
+        } 
+        else{
+            echo '<option value="default" >Chọn khóa</option>';
+        }
+        while ( $row_list_session = pg_fetch_array($list_session) ){
+            if ( $row_list_session['session'] == $selected_session){
+                echo '<option value="'.$row_list_session['session'].'" selected >'.$row_list_session['session'].'</option>';
+                }
+            else{
+                echo '<option value="'.$row_list_session['session'].'">'.$row_list_session['session'].'</option>';
+            }
+        }
+        ?>		
+              </select>
+            </div>
+          </div>
+          <div class="form-group">	    
+            <div class="col-sm-5 col-sm-offset-2">
+              <button name="add" type="submit" class="btn btn-primary">Thêm sinh viên</button>
+            </div>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+    
+  </body>
+  
+</html>

@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Cập nhật điểm lớp học</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/custom2.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+    <script type="text/javascript" src="../js/tabulous.js"></script>
+    <script type="text/javascript" src="../js/dash_tab.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+<div class="container-fluid">
+    <div class="jumbotron">
+        <h1>OpenSIS</h1>
+<h3>Preparing Students For Success In A Changing World</h3>
+    </div>
+    <?php $page = 'diem lop hoc';
+    //include_once('../user/header.html');
+	  include "../admin/admin_navbar.html";
+	  ?>
+
+    <div class="container-fluid">
+    
+    <p></p>
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <div class="container pageheader" role="main">      
+        <h2><i class="fa fa-users"></i>Cập nhật điểm lớp học<span>/ Cập nhật điểm theo lớp học tại đây</span></h2>
+      </div>
+      <br />
+      <?php
+      		 if ( isset($sucess_comit_point) ){
+		 echo '<div class="alert alert-success alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';     
+		 echo $sucess_comit_point;                                                                    
+		 echo '!</div>';
+		 unset( $sucess_comit_point);
+		 }
+		 if ( isset($error_comit_point) ){
+		 echo '<div class="alert alert-danger alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';     
+		 echo $error_comit_point;                                                                    
+		 echo '!</div>';
+		 unset( $error_comit_point);
+		 }
+         ?>
+        <form class="form-horizontal" role="form" method="post" action="" >
+          <div class="form-group">
+            <label for="ClassId" class="col-sm-2 control-label">Mã lớp học</label>
+            <div class="col-sm-4">
+              <input name="id_class" type="text" class="form-control" id="ClassId" placeholder="Mã lớp">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-5 col-sm-offset-2">
+              <button name="find_class" type="submit" class="btn btn-primary">Tìm</button>
+            </div>
+	    <?php
+               if ( isset($error_find_class) ){
+               echo '<div class="alert alert-warning alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';     
+               echo $error_find_class;                                                                    
+               echo '</div>';
+               unset($error_find_class);
+               }
+               ?>
+          </div>
+        </form>
+        <div class="panel panel-primary">
+          <div class="panel-heading" style="text-align:center;">
+	    <?php
+	       if( isset($class)) {
+	       echo '<b>Bảng điểm lớp '.$class['id_class'].' học phần '.$class['id_subject'].' học kỳ '.$class['semester'].'</b>';
+	       } else {
+	       echo '<b>Bảng điểm lớp học</b>';
+	       }
+	       ?>
+          </div>
+          <div class="panel-body">
+	    <form method="post" action="">
+              <table class="table table-bordered table-hover">
+		<thead>
+                  <tr>
+                    <th>MSSV</th>
+                    <th>Họ tên sinh viên</th>
+                    <th>Ðiểm quá trình</th>
+                    <th>Ðiểm cuối kỳ</th>
+                  </tr>
+		</thead>
+		<tbody>
+		  <?php
+		     if( isset($class_row)){
+		     while( $row_list_student = pg_fetch_array($list_student)){
+		     $student = pg_fetch_array($user->get_info_user( $row_list_student['username']));
+		  echo '<tr>';
+		    echo '<td>'.$student['username'].'</td>';
+		    echo '<td>'.$student['fullname'].'</td>';
+		    $point_by_username_id_class = $class_obj->get_point_by_username_id_class( $student['username'], $class_row['id_class']);
+		    if( pg_num_rows($point_by_username_id_class)){
+		    $point = pg_fetch_array( $point_by_username_id_class);
+		    echo '<td><input name="midle'.$student['username'].'" type="number" min="0" max="10" step="0.5" class="form-control" id="Point" value="'.$point['midle_point'].'"></td>';
+		    echo '<td><input name="end'.$student['username'].'"type="number" min="0" max="10" step="0.5" class="form-control" id="Point" value="'.$point['end_point'].'"></td>';		  
+		    } else {
+		    echo '<td><input name="midle'.$student['username'].'" type="number" min="0" max="10" step="0.5" class="form-control" id="Point"></td>';
+		    echo '<td><input name="end'.$student['username'].'"type="number" min="0" max="10" step="0.5" class="form-control" id="Point"></td>';
+		    }
+		    echo '</tr>';
+		  }
+		  }
+		  ?>
+		</tbody>
+              </table>
+          </div>
+          <div class="panel-footer clearfix">
+            <div class="col-sm-offset-4 col-sm-4" style="text-align:center;">
+	      <?php
+		 if ( isset($class_row)){
+		 echo '<button name="commit_point" value="'.$class_row['id_class'].'" type="submit" class="btn btn-primary btn-block">Vào điểm</button>';
+		 } else {
+		 echo '<button name="commit_point" type="submit" class="btn btn-primary btn-block">Cập nhật điểm</button>';
+		 }
+		 ?>
+            </div>
+          </div>
+	  </form>
+        </div>        
+      </div>
+    </div>
+  </body>
+</html>

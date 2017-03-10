@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Viết thông báo</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/admin_custom.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+    <script type="text/javascript" src="../js/tabulous.js"></script>
+    <script type="text/javascript" src="../js/dash_tab.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+  <div class="container-fluid">
+    <div class="jumbotron"><h1>OpenSIS</h1>
+<h3>Preparing Students For Success In A Changing World</h3>
+    </div>
+    <?php $page = 'viet thong bao';
+	  include '../admin/admin_navbar.html';
+	  ?>
+
+    <div class="container-fluid">
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <div class="container pageheader" role="main">      
+        <h2><i class="fa fa-pencil"></i>Viết thông báo<span>/ Viết thông báo tại đây</span></h2>
+      </div>
+      <br />
+      	  <?php
+             if ( isset($error_post) ){
+             echo '<div class="alert alert-danger alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';     
+             echo $error_post;                                                                    
+             echo '</div>';
+             unset($error_post);
+             }
+             if ( isset($sucess_post) ){
+             echo '<div class="alert alert-success alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';
+             echo $sucess_post;
+             echo '</div>';
+             unset($sucess_post);
+             }
+             ?>        
+        <form role="form" method="post" action="" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="Title">Tiêu đề</label>
+            <input name="title" type="text" class="form-control" id="Title" placeholder="Tiêu đề" required autofocus>
+          </div>
+          <div class="form-group">
+            <label for="NoticeType">Loại thông báo</label>
+            <select name="select_category" class="form-control">
+              <option value="0" selected>Thông báo của ban quản trị</option>
+              <option value="1" >Thông báo đăng ký học tập</option>
+              <option value="2" >Thông báo xét nhận đồ án tốt nghiệp</option>
+              <option value="3" >Thông báo xét tốt nghiệp</option>
+              <option value="4" >Thông báo xử lý học tập</option>
+	      <option value="5" >Thông báo thi cử</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="Brief">Tóm tắt</label>
+            <input name="brief" type="text" class="form-control" id="Brief" placeholder="Tóm tắt nội dung chính">
+          </div>
+
+          <div class="form-group">
+            <label for="Brief">Mở đầu</label>
+            <input name="header" type="text" class="form-control" id="Brief" placeholder="Mở đầu">
+          </div>	  
+	  
+          <div class="form-group">
+            <label for="Content">Nội dung</label>
+            <textarea name="content" class="form-control" rows="10" id="Content" placeholder="Nội dung thông báo" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="InputFile">File đính kèm</label>
+            <input type="file" name="file_attack" id="InputFile">
+          </div>
+
+          <button name="post" type="submit" class="btn btn-primary">Tạo thông báo</button>
+        </form>
+      </div>
+    </div>
+    
+  </body>
+  
+</html>

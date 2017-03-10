@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Sửa thông tin sinh viên</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/admin_custom.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+    <script type="text/javascript" src="../js/tabulous.js"></script>
+    <script type="text/javascript" src="../js/dash_tab.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script>
+      function showClass( session, school ) {
+      if ( school == "default") {
+      document.getElementById("displayClass").innerHTML="<select name=\"class\" class=\"form-control\"><option value=\"default\" selected>Chọn lớp</option></select>";
+      return;
+      
+      }
+      
+      if ( session == "default") {
+      document.getElementById("displayClass").innerHTML="<select name=\"class\" class=\"form-control\"><option value=\"default\" selected>Chọn lớp</option></select>";
+      return;
+      
+      }
+      
+      if (window.XMLHttpRequest) {
+      // code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+      } else { // code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange=function() {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+      document.getElementById("displayClass").innerHTML=xmlhttp.responseText;
+      }
+      }
+      
+      xmlhttp.open("GET", "displayclass.php?session="+session+"&school="+school+"&as=class_of_student",true);
+      xmlhttp.send();
+}
+</script>
+  </head>
+
+  <body>
+
+    <div class="container-fluid">
+    <div class="jumbotron"><h1>OpenSIS</h1>
+<h3>Preparing Students For Success In A Changing World</h3>
+    </div>
+    <?php $page = 'sua sinh vien';
+	  include '../admin/admin_navbar.html';
+	  ?>
+
+    <div class="container-fluid">
+      <div class="col-sm-8 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <div class="container pageheader" role="main">      
+        <h2><i class="fa fa-gears"></i>Sửa thông tin sinh viên<span>/ Sửa thông tin sinh viên tại đây</span></h2>
+      </div>
+      <br />
+      	    <?php
+               if ( isset($error_find_username) ){
+               echo '<div class="alert alert-warning alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';
+               echo $error_find_username;
+               echo '</div>';
+               unset($error_find_username);
+               }
+               ?>	    
+         
+                  <?php
+                 if ( isset($error_update_student) ){
+                 echo '<div class="alert alert-danger alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';     
+                 echo $error_update_student;                                                                    
+                 echo '</div>';
+                 unset($error_update_student);
+                 }
+                 if ( isset($update_student_success) ){
+                 echo '<div class="alert alert-success alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';
+                 echo $update_student_success;
+                 echo '</div>';
+                 unset($update_student_success);
+                 }
+                 ?>
+      <form class="form-horizontal" role="form" method="post" action="">
+          <div class="form-group">
+            <label for="StudentId" class="col-sm-2 control-label">Mã số sinh viên</label>
+            <div class="col-sm-5">
+              <input name="username_find" type="number" class="form-control" id="StudentId" placeholder="Nhập mã số sinh viên">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-5 col-sm-offset-2">
+              <button name="find_username" type="submit" class="btn btn-primary">Tìm</button>
+            </div> </div>
+          <br />
+        </form>
+
+        <form class="form-horizontal" role="form" method="post" action="" >
+          <div class="form-group">
+            <label for="StudentId" class="col-sm-2 control-label">Mã số sinh viên</label>
+            <div class="col-sm-8">
+			<?php
+				if( isset ($variable_student)  ){
+					echo '<input name="username" value="'.$student['username'].'" type="text" class="form-control" id="StudentId" placeholder="'.$student['username'].'" readonly>';
+				} else {
+					echo '<input name="username" type="number" class="form-control" id="StudentId" placeholder="" readonly>';
+				}
+				?>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="StudentName" class="col-sm-2 control-label">Họ tên sinh viên</label>
+            <div class="col-sm-8">
+	      <?php
+		 if ( isset ($variable_student)  ){
+		 echo '<input name="fullname" type="text" class="form-control" id="StudentName" value="'.$student['fullname'].'" required>';
+		 } else {
+		 echo '<input type="text" class="form-control" id="StudentName" value="" required>';
+		 }
+		 ?>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="Birthday" class="col-sm-2 control-label">Ngày sinh</label>
+            <div class="col-sm-8">
+	      <?php
+		 if ( isset ($variable_student)  ){
+		 echo '<input name="student_dob" type="date" class="form-control" id="Birthday" value="'.$student['dob'].'" required>';
+		 } else {
+		 echo '<input type="date" class="form-control" id="Birthday" value="" required>';
+		 }
+		 ?>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="Sex" class="col-sm-2 control-label">Giới tính</label>
+            <div class="col-sm-8">
+              <select name="sex_select" id="Sex" class="form-control">
+		<?php
+		   if ( isset ($variable_student)  ){
+		   echo '<option value="'.$student['sex'].'" selected>'.$student['sex'].'</option>';
+           echo '<option value="Nam" >Nam</option>';
+		   echo '<option value="Nữ" >Nữ</option>';
+		   } else {
+		   echo '<option></option>';
+		   }
+		   ?>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="Hometown" class="col-sm-2 control-label">Quê quán</label>
+            <div class="col-sm-8">
+	      <?php
+		 if( isset ($variable_student)  ){
+		 echo '<input name="new_hometown" type="text" class="form-control" id="Hometown" value="'.$student['hometown'].'" required>';
+		 } else {
+		 echo '<input type="text" class="form-control" id="Hometown" value="" required>';
+		 }
+		 ?>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="Schoolschool" class="col-sm-2 control-label">Khóa học</label>
+            <div class="col-sm-8">
+              <select name="new_session" id="Schoolschool" class="form-control">
+
+		<?php
+		   if ( isset ($variable_student)  ){
+		   while ( $row_list_session = pg_fetch_array($list_session) ){
+		   if ( $row_list_session['session'] == $student['session']){
+		   echo '<option value="'.$row_list_session['session'].'" selected >'.$row_list_session['session'].'</option>';
+		   } else {
+		   echo '<option value="'.$row_list_session['session'].'" >'.$row_list_session['session'].'</option>';
+		   }
+		   }
+		   } else {
+		   echo '<option></option>';
+		   }
+		   ?>		
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="CourseType" class="col-sm-2 control-label">Hệ học</label>
+            <div class="col-sm-8">
+              <select name="course_type" id="CourseType" class="form-control">
+		<?php
+		   if ( isset ($variable_student)  ){
+		   echo '<option value="'.$student['level_school'].'" selected>'.$student['level_school'].'</option>';
+		   echo '<option value="Đại Học" >Đại Học</option>';
+		   echo '<option value="Cao Đẳng" >Cao Đẳng</option>';
+		   echo '<option value="Tại Chức" >Tại Chức</option>';
+		   echo '<option value="Cao Học" >Cao Học</option>';
+		   } else {
+		   echo '<option></option>';
+		   }
+		   ?>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+	
+            <div class="col-sm-5 col-sm-offset-2">
+              <button name="commit" type="submit" class="btn btn-primary">Sửa thông tin sinh viên</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+  </body>
+  
+</html>

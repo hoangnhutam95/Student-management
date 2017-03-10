@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<title>Trang chủ</title>
+	<meta charset="UTF-8"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+   	<link rel="stylesheet" type="text/css" href="../css/csssv.css">
+    <link rel="stylesheet" type="text/css" href="../css/scroll.css">
+    <script type="text/javascript"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+ </head>
+ <style>
+body{
+    font-size: 40px;
+    font-family: myfonty;
+    color: yellow;
+    font-weight: bolder;
+}
+ </style>
+ <script language="javascript">
+cusor=' ';
+count=0;
+mess='Preparing Students For Success In A Changing World'
+ function type()
+{
+    if (cusor=='+') cusor=' '; else cusor='+';
+    document.getElementById('scr').innerHTML=mess.substring(0,count++)+cusor;
+    if(count<=mess.length) setTimeout("type()",80);
+}
+</script>
+<body onload="type()">
+<div id="head">
+    <img src="../image/logo.png"  style="float:left; width:210px; height:190px;"/>
+    <div class="right">
+        <p class="slogan1">OpenSIS</p>
+        <div id="scr"></div>
+    </div>
+</div>
+
+<div id="center">
+   <?php
+       $page = 'trang chu';
+       include '../user/navbar_guest.html';
+       ?>
+
+<div id="marginleft">
+    <div class="col-sm-3">
+        <div class="module">
+            <div class="inner">
+                <span class="corners-top"></span>
+                <div class="h3"><i class="fa fa-calendar-check-o" >&nbsp;&nbsp;</i>Upcoming events</div><br />
+                <script src="http://illiweb.com/rsc/18/frm//jquery/marquee/jquery.marquee.min.js " type="text/javascript"></script>
+                <div id="comments_scroll_div">
+                    <div class="marquee" data-direction="up" data-duration="8000" data-pauseonhover="true" style="overflow:hidden;height:250px;">
+                        <div class="js-marquee-wrapper" style="margin-top: 200px; animation: marqueeAnimation-3730377 24.28s linear 1s infinite running;">
+                            <div class="js-marquee" style="margin-right: 0px; float: none; margin-bottom: 0px;">&nbsp;»&nbsp;<a href="##" title="">Chung kết Bachkhoa's got talent</a>
+                                <br/><img src="http://illiweb.com/fa/m/icon_minitime1.gif" alt="">&nbsp;5/12/2015, 08:30
+                                <br/><br/>&nbsp;»&nbsp;<a href="##" title="">Giao lưu: "Giai điệu Bách Khoa"</a>
+                                <br/><img src="http://illiweb.com/fa/m/icon_minitime1.gif" alt="">&nbsp;5/12/2015, 19:00
+                                <br/><br/>&nbsp;»&nbsp;<a href="##" title="">Hội thảo Thông tin và Định vị trên biển (ComNaVi 2015)</a>
+                                <br/><img src="http://illiweb.com/fa/m/icon_minitime1.gif" alt="">&nbsp;4/12/2015, 14:00
+                                <br/><br/>&nbsp;»&nbsp;<a href="##" title="">Khai mạc Giải bóng rổ sinh viên khu vực Hà Nội 2015</a>
+                                <br/><img src="http://illiweb.com/fa/m/icon_minitime1.gif" alt="">&nbsp;2/12/2015, 15:00
+                                <br/><br/>&nbsp;»&nbsp;<a href="##" title="">Hội nghị khoa học quốc tế về Kỹ thuật hóa học 2015</a>
+                                <br/><img src="http://illiweb.com/fa/m/icon_minitime1.gif" alt="">&nbsp;3/12/2015, 08:30
+                                <br/><br/>&nbsp;»&nbsp;<a href="##" title="">Kỷ niệm: Ngày khoa học Đức tại Việt Nam</a>
+                                <br/><img src="http://illiweb.com/fa/m/icon_minitime1.gif" alt="">&nbsp;1/12/2015, 08:00
+                                <br/><br/>&nbsp;»&nbsp;<a href="##" title="">Trao bằng cử nhân Chương trình UPMF (Cộng hòa Pháp)</a>
+                                <br/><img src="http://illiweb.com/fa/m/icon_minitime1.gif" alt="">&nbsp;30/11/2015, 09:00
+                                <br/><br/>&nbsp;»&nbsp;<a href="##" title="">Chương trình "Kết nối cộng đồng - Vì an toàn giao thông"</a>
+                                <br/><img src="http://illiweb.com/fa/m/icon_minitime1.gif" alt="">&nbsp;29/11/2015, 18:00
+                                <br/><br/>&nbsp;»&nbsp;<a href="##" title="">Chương trình "Ngày hội tuổi trẻ"</a>
+                                <br/><img src="http://illiweb.com/fa/m/icon_minitime1.gif" alt="">&nbsp;28/11/2015, 08:00
+                                <br/><br/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script>$(".marquee").marquee();</script>
+                <span class="corners-bottom"></span>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+          <div class="panel-heading"><img src="../image/new.gif" height="22px"/>&nbsp;<b>Tin mới nhất</b></div>
+          <div >
+	    <?php
+	       $count = 1;
+	       while( $row_new = pg_fetch_array( $result_10_last_post) ){
+	       echo '<a href="view_post_guest.php?'.'post_id='.$row_new['post_id'].'" class="list-group-item">'.$row_new['title'].'</a>';
+	       $count = $count + 1;
+	       if( $count > 10){
+	    break;
+	       }
+	       }
+	       ?>
+          </div>
+        </div>
+    </div>
+</div>
+
+<div id="thongbao">
+      <div class="col-md-12">
+        <div class="panel panel-info ">
+          <div class="panel-heading"><img src="../image/book.png" height="36px">&nbsp;<b>Thông báo của ban Quản trị</b></div>
+              <div class="list-group">
+    	       <?php
+    	       $count = 0;
+    	       while( $row_post_admin = pg_fetch_array( $result_post_admin ) ){
+    	       echo '<a href="view_post_guest.php?'.'category=0&'.'post_id='.$row_post_admin['post_id'].'" class="list-group-item">';
+    	       echo '<h4 class="list-group-item-heading">'.$row_post_admin['title'].'</h4>';
+    	       echo '<p class="list-group-item-text">'.$row_post_admin['brief'].'</p>';
+    	       echo '</a>';
+    	       $count= $count + 1;
+    	       if ( $count > 2){
+    	       break;
+    	       }
+    	       }
+    	       ?>
+              </div>
+        </div>
+    
+        <div class="panel panel-info">
+          <div class="panel-heading"><img src="../image/book1.png" height="36px"/>&nbsp;<b>Thông báo đăng ký học tập</b></div>
+          <div class="list-group">
+	       <?php
+	       $count = 0;
+	       while( $row_post_register_class = pg_fetch_array( $result_post_register_class ) ){
+	       echo '<a href="view_post_guest.php?'.'category=1&'.'post_id='.$row_post_register_class['post_id'].'" class="list-group-item">';
+	       echo '<h4 class="list-group-item-heading">'.$row_post_register_class['title'].'</h4>';
+	       echo '<p class="list-group-item-text">'.$row_post_register_class['brief'].'</p>';
+	       echo '</a>';
+	       $count = $count + 1;
+	       if( $count > 2){
+	       break;
+	       }
+	       }
+	       ?>
+          </div>
+        </div>
+  
+        <div class="panel panel-info">
+          <div class="panel-heading"><img src="../image/note.png" height="36px"/>&nbsp;<b>Thông báo xét nhận đồ án tốt nghiệp</b></div>
+          <div class="list-group">
+	       <?php
+	       $count = 0;
+	       while( $row_post_graduate_project = pg_fetch_array( $result_post_graduate_project ) ){
+	       echo '<a href="view_post_guest.php?'.'category=2&'.'post_id='.$row_post_graduate_project['post_id'].'" class="list-group-item">';
+	       echo '<h4 class="list-group-item-heading">'.$row_post_graduate_project['title'].'</h4>';
+	       echo '<p class="list-group-item-text">'.$row_post_graduate_project['brief'].'</p>';
+	       echo '</a>';
+	       $count = $count + 1;
+	       if( $count > 2){
+	       break;
+	       }	       
+	       }
+	       ?>
+          </div>
+        </div>
+  
+        <div class="panel panel-info">
+          <div class="panel-heading"><img src="../image/pass.png" height="36px">&nbsp;<b>Thông báo xét tốt nghiệp</b></div>
+          <div class="list-group">
+	       <?php
+	       $count = 0;
+	       while( $row_post_graduate_consider = pg_fetch_array( $result_post_graduate_consider ) ){
+	           echo '<a href="view_post_guest.php?'.'category=3&'.'post_id='.$row_post_graduate_consider['post_id'].'" class="list-group-item">';
+	           echo '<h4 class="list-group-item-heading">'.$row_post_graduate_consider['title'].'</h4>';
+	           echo '<p class="list-group-item-text">'.$row_post_graduate_consider['brief'].'</p>';
+	           echo '</a>';
+	           $count = $count + 1;
+	           if( $count > 2){
+	               break;
+	           }	       
+	       }
+           ?>
+          </div>
+        </div>
+  
+        <div class="panel panel-info">
+          <div class="panel-heading"><img src="../image/pen.png" height="36px">&nbsp;<b>Thông báo xử lý học tập</b></div>
+          <div class="list-group">
+	       <?php
+	        $count = 0;
+	        while( $row_post_warning_study = pg_fetch_array( $result_post_warning_study ) ){
+	            echo '<a href="view_post_guest.php?'.'category=4&'.'post_id='.$row_post_warning_study['post_id'].'" class="list-group-item">';
+	            echo '<h4 class="list-group-item-heading">'.$row_post_warning_study['title'].'</h4>';
+	            echo '<p class="list-group-item-text">'.$row_post_warning_study['brief'].'</p>';
+	            echo '</a>';
+                $count = $count + 1;
+                if( $count > 2){
+	               break;
+	           }	       
+	       }
+	       ?>
+          </div>
+        </div>
+         
+        <div class="panel panel-info">
+          <div class="panel-heading"><img src="../image/test.png" height="36px">&nbsp;<b>Thông báo thi cử</b></div>
+          <div class="list-group">
+            <?php
+	        $count = 0;
+	        while( $row_post_test = pg_fetch_array( $result_post_test ) ){
+	            echo '<a href="view_post_guest.php?'.'category=5&'.'post_id='.$row_post_test['post_id'].'" class="list-group-item">';
+	            echo '<h4 class="list-group-item-heading">'.$row_post_test['title'].'</h4>';
+	            echo '<p class="list-group-item-text">'.$row_post_test['brief'].'</p>';
+	            echo '</a>';
+                $count = $count + 1;
+                if( $count > 2){
+	               break;
+	           }	       
+	       }
+	       ?>
+          </div>
+        </div>
+     </div>
+</div>
+</div>
+
+</body>
+</html>
